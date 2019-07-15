@@ -3,10 +3,7 @@
 std::string maca_analyse(std::string config, std::string toki_config_path, std::string input_text) {
 	std::string input_format = "txt", output_format = "plain";
 
-	Toki::Path::Instance().set_verbose(false);
-	Maca::Path::Instance().set_verbose(false);
-	Corpus2::Path::Instance().set_verbose(false);
-
+	#TODO: test with custom config 
 	if (!toki_config_path.empty()) {
 		Toki::Path::Instance().set_search_path(toki_config_path);
     }
