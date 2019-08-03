@@ -3,6 +3,8 @@
 std::string maca_analyse(std::string config, std::string toki_config_path, std::string input_text) {
 	std::string input_format = "txt", output_format = "plain";
 
+	static std::string last_config = config;
+
 	//TODO: test with custom config 
 	if (!toki_config_path.empty()) {
 		Toki::Path::Instance().set_search_path(toki_config_path);
@@ -10,6 +12,11 @@ std::string maca_analyse(std::string config, std::string toki_config_path, std::
 
 	if (!config.empty()) {
 			static boost::shared_ptr<Maca::SentenceAnalyser> sa = Maca::SentenceAnalyser::create_from_named_config(config);
+
+			if(config != last_config){
+				last_config = config;
+				sa = Maca::SentenceAnalyser::create_from_named_config(config);
+			}
 
 			static std::stringstream out_stream;
 			static boost::shared_ptr<Corpus2::TokenWriter> writer = Corpus2::TokenWriter::create_stream_writer(output_format, out_stream, sa->tagset());
