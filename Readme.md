@@ -21,7 +21,7 @@ analysed_text = maca_analyse("config name", "path to toki config or leave blank"
 
 Check [maca documentation](http://nlp.pwr.wroc.pl/redmine/projects/libpltagger/wiki)
 
-## Instalation
+## Installation
 
 To install maca_analyse you should have **Boost**, **Toki**, **Maca**, **Corpus2** and **PwrUtils** libraries installed.
 
