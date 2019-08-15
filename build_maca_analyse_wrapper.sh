@@ -2,7 +2,7 @@
 
 #TODO: Use CMake to build wrappers
 swig -python -c++ maca_analyse.i
-g++ -fPIC -c $(pkg-config --cflags --libs python3) maca_analyse.cpp maca_analyse_wrap.cxx
+g++ -O2 -fPIC -c $(pkg-config --cflags --libs python3) maca_analyse.cpp maca_analyse_wrap.cxx
 
 LIB_Boost=$(ldconfig -p | grep libboost_program_options.so$ | awk '{print $4}')
 LIB_Icuuc=$(ldconfig -p | grep libicuuc.so$ | awk '{print $4}')
@@ -49,7 +49,7 @@ fi
 
 LIBS=$( echo $LIB_Boost $LIB_Icuuc $LIB_PwrUtils $LIB_Toki $LIB_Corpus2 $LIB_Maca )
 
-g++ -shared -o _maca_analyse.so maca_analyse.o maca_analyse_wrap.o $LIBS
+g++ -O2 -shared -o _maca_analyse.so maca_analyse.o maca_analyse_wrap.o $LIBS
 Python_Path=$(python3 -c "import sys; print('/usr/local/lib/python' + sys.version[:3] + '/dist-packages/')")
 
 cp _maca_analyse.so ${Python_Path}
