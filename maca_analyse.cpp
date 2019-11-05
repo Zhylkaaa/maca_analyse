@@ -25,7 +25,7 @@ std::string maca_analyse(std::string config, std::string toki_config_path, std::
 					}
 				}
 			} else {
-				static boost::shared_ptr<Corpus2::TokenReader> tr = boost::make_shared<Maca::TextReader>(input_stream, sa, 1);
+				boost::shared_ptr<Corpus2::TokenReader> tr = boost::make_shared<Maca::TextReader>(boost::ref(input_stream), sa, 1);
 
 				if (split_chunks) {
 					while (boost::shared_ptr<Corpus2::Chunk> chunk = tr->get_next_chunk()) {
